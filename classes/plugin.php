@@ -305,12 +305,6 @@ class plugin extends \assign_submission_plugin {
             $mimetype = mimeinfo('type', $filename);
         }
 
-        // Check whether the file is of an allowed mimetype.
-        if (!$this->validate_mimetype($mimetype)) {
-            $validationfailed(get_string('typeoffilenotsupported', 'assignsubmission_fileregex'));
-            return false;
-        }
-
         $settings = $this->get_config();
 
         // Validate file name.
@@ -323,6 +317,12 @@ class plugin extends \assign_submission_plugin {
                 $validationfailed($error);
                 return false;
             }
+        }
+
+        // Check whether the file is of an allowed mimetype, but only when the content will be checked.
+        if ($settings->content_fields_count > 0 && !$this->validate_mimetype($mimetype)) {
+            $validationfailed(get_string('typeoffilenotsupported', 'assignsubmission_fileregex'));
+            return false;
         }
 
         // Validate file content.
