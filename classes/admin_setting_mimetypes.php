@@ -90,18 +90,21 @@ class admin_setting_mimetypes extends admin_setting_configtextarea {
      * @return string
      */
     public static function get_default_config_value() {
-        $types = core_filetypes::get_types();
-        $mimes = array_unique(array_map(function($type) {
-            return $type['type'];
-        }, $types));
-        $mimes = array_filter($mimes, function($mime) {
-            return (strpos($mime, 'text/') === 0
-                || $mime == 'application/x-javascript'
-                || $mime == 'application/x-latex'
-                || $mime == 'application/x-sh'
-                || $mime == 'application/xml');
-        });
-        sort($mimes);
+        $mimes = [
+            'application/x-javascript',
+            'application/x-latex',
+            'application/x-sh',
+            'application/xhtml+xml',
+            'application/xml',
+            'text/css',
+            'text/csv',
+            'text/html',
+            'text/plain',
+            'text/tab-separated-values',
+            'text/x-component',
+            'text/x-scss',
+            'text/xml',
+        ];
         return implode("\n", $mimes);
     }
 
