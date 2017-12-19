@@ -25,7 +25,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version      = 2017120601;
+$plugin->version      = 2017121900;
 $plugin->requires     = 2016052309;
 $plugin->component    = 'assignsubmission_fileregex';
 $plugin->maturity     = MATURITY_STABLE;
